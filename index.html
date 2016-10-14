@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HotSloths!</title>
+    <style>
+        html,body,#sloths {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div id="sloths"></div>
+<!-- Creator: Daniel Mason
+       Twitter: @iDanooNZ
+       Comments: After a few casual drinks, a friend of mine suggested a domain.. It was available.. :D
+                Also.. I don't really javascript often.  -->
+<script>
+    $(document).ready(function () {
+
+        function checkExtention(url) {
+            //Simply checks for png/jpg.
+            var parts = url.split('.');
+            var ext = parts[parts.length - 1];
+            switch (ext.toLowerCase()) {
+                case 'png':
+                case 'jpg':
+                    return true;
+            }
+
+            return false;
+        }
+
+        function updateSloths(last) {
+            $.getJSON("https://www.reddit.com/r/sloths/.json?count=25&after=" + last, function (data) {
+
+                $.each(data.data.children, function (i, item) {
+                    var url = item.data.url;
+                    //Check for imgur to add png/jpg if they link something else..
+                    if(url.indexOf("imgur.com") != -1 && (url.indexOf(".png") == 0 || url.indexOf(".jpg") == 0)) {
+                        url = url+".jpg";
+                    }
+
+                    //skip if not a legit extention
+                    var legitextention = checkExtention(url);
+                    if(legitextention == false) return;
+
+                    //skip if imgur album
+                    if(url.indexOf("imgur.com/a/") != -1) return;
+
+                    //Changes imgur links to https - cause 'securitay
+                    if(url.indexOf("http://imgur.com") != -1) {
+                        url = url.substring(4);
+                        url = "https"+url;
+                    }
+
+                    //clear out previous and load new one!
+                    var slothDom = $('#sloths');
+                    slothDom.fadeOut();
+                    slothDom.html('');
+                    slothDom.html('<img src="'+url+'" style="width:100%; height:100%; position:absolute; top:0; left: 0;">');
+                    slothDom.fadeIn();
+
+                    //tests?
+                    console.log(url);
+                });
+                //TODO: Make the bloody images load one at a time with 4sec timeout before the next?
+                //TODO: Once you hit the last item in the 25 post array, recursively call the next page passing it the last post ID on the page.
+
+                updateSloths(last);
+            });
+        }
+
+        //LET THE GAMES BEGIN.
+        updateSloths("");
+    });
+    </script>
+</body>
+</html>
