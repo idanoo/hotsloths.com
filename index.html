@@ -18,14 +18,13 @@
 <!-- Creator: Daniel Mason
        Twitter: @iDanooNZ
        Comments: After a few casual drinks, a friend of mine suggested a domain.. It was available.. :D
-                Also.. I don't really javascript often.  -->
+                Also.. I don't really javascript often so excuse the crappy code.  -->
 <script>
     $(document).ready(function () {
         var slothDom = $('#sloths');
         var delayTime = 4000;
 
         function checkExtention(url) {
-            //Simply checks for png/jpg.
             var parts = url.split('.');
             var ext = parts[parts.length - 1];
             switch (ext.toLowerCase()) {
