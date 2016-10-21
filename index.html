@@ -73,7 +73,11 @@
                 sloths = shuffleImages(sloths);
                 var x = 1;
                 var slothCount = sloths.length - 1;
+
+                //Load first image + preload second before loop.
                 updateImage(sloths[0]);
+                var preload = new Image();
+                preload.src = sloths[1];
                 var timer = setInterval(function () {
                     updateImage(sloths[x]);
                     if (x == slothCount) {
