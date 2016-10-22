@@ -34,7 +34,7 @@
        Comments: After a few casual drinks, a friend of mine suggested a domain.. It was available.. :D
                 Also.. I don't really javascript often so excuse the crappy code.
                  ALSO I AM SORRY ABOUT THE ADS :( -->
-<?php $adUrl = "https//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";?>
+<?php $adUrl = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";?>
 <script async src="<?=$adUrl?>"></script>
 <ins class="adsbygoogle"
      style="position:absolute; bottom:0; right:0; z-index:9999; display:block; width:320px;height:50px; padding:0!important;margin:0!important;"
