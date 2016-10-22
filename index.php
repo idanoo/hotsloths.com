@@ -34,10 +34,10 @@
        Comments: After a few casual drinks, a friend of mine suggested a domain.. It was available.. :D
                 Also.. I don't really javascript often so excuse the crappy code.
                  ALSO I AM SORRY ABOUT THE ADS :( -->
-
-<script async src="https//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<?php $adUrl = "https//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";?>
+<script async src="<?=$adUrl?>"></script>
 <ins class="adsbygoogle"
-     style="position:absolute; bottom:0; right:0; z-index:9999; display:block; width:320px;height:50px; padding:0!important;margin:0 0 0px 0!important;"
+     style="position:absolute; bottom:0; right:0; z-index:9999; display:block; width:320px;height:50px; padding:0!important;margin:0!important;"
      data-ad-client="ca-pub-1912142404509863"
      data-ad-slot="9408954236"></ins>
 <script>
@@ -129,7 +129,7 @@
             });
         }
 
-        //This is where it all started..
+        //This is where it all started.
         updateSloths("");
     });
 </script>
