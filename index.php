@@ -83,7 +83,6 @@
             $.ajax({
                 url: "https://www.reddit.com/r/sloths/.json?count=25&after=" + last,
                 dataType: 'json',
-                data: data,
                 success: function (data) {
                     var i = 1;
                     var last = data.data.after;
