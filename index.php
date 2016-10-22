@@ -80,52 +80,60 @@
         }
 
         function updateSloths(last) {
-            $.getJSON("https://www.reddit.com/r/sloths/.json?count=25&after=" + last, function (data) {
-                var i = 1;
-                var last = data.data.after;
+            $.ajax({
+                url: "https://www.reddit.com/r/sloths/.json?count=25&after=" + last,
+                dataType: 'json',
+                data: data,
+                success: function (data) {
+                    var i = 1;
+                    var last = data.data.after;
 
-                //SLOTH ARRAY!!!!
-                var sloths = $.map(data.data.children, function (item) {
-                    var url = item.data.url;
-                    if (url.indexOf("imgur.com") != -1 && (url.indexOf(".png") == 0 || url.indexOf(".jpg") == 0)) {
-                        url = url + ".jpg";
-                    }
+                    //SLOTH ARRAY!!!!
+                    var sloths = $.map(data.data.children, function (item) {
+                        var url = item.data.url;
+                        if (url.indexOf("imgur.com") != -1 && (url.indexOf(".png") == 0 || url.indexOf(".jpg") == 0)) {
+                            url = url + ".jpg";
+                        }
 
-                    //We only want image files.
-                    var legitExtention = checkExtention(url);
-                    if (legitExtention == false) return;
+                        //We only want image files.
+                        var legitExtention = checkExtention(url);
+                        if (legitExtention == false) return;
 
-                    //Ignore albums at this point.
-                    if (url.indexOf("imgur.com/a/") != -1) return;
+                        //Ignore albums at this point.
+                        if (url.indexOf("imgur.com/a/") != -1) return;
 
-                    //HTTPS THAT SUCKER! Holy shit this is hax.
-                    if (url.indexOf("http://imgur.com") != -1 || url.indexOf("http://i.imgur.com") != -1) {
-                        url = url.substring(4);
-                        url = "https" + url;
-                    }
-                    return url;
-                });
-                sloths = shuffleImages(sloths);
-                var x = 1;
-                var slothCount = sloths.length - 1;
+                        //HTTPS THAT SUCKER! Holy shit this is hax.
+                        if (url.indexOf("http://imgur.com") != -1 || url.indexOf("http://i.imgur.com") != -1) {
+                            url = url.substring(4);
+                            url = "https" + url;
+                        }
+                        return url;
+                    });
+                    sloths = shuffleImages(sloths);
+                    var x = 1;
+                    var slothCount = sloths.length - 1;
 
-                //setInterval does the interval before first iteration.. manually run first img.
-                updateImage(sloths[0]);
-                var preload = new Image();
-                preload.src = sloths[1];
+                    //setInterval does the interval before first iteration.. manually run first img.
+                    updateImage(sloths[0]);
+                    var preload = new Image();
+                    preload.src = sloths[1];
 
-                //LET THE SLOTHS BEGIN.
-                var timer = setInterval(function () {
-                    updateImage(sloths[x]);
-                    if (x == slothCount) {
-                        clearInterval(timer);
-                        updateSloths(last); // <- CHECK OUT MY RECURSIVE SHIT
-                    } else {
-                        var preload = new Image();
-                        preload.src = sloths[x + 1];
-                    }
-                    x++;
-                }, delayTime);
+                    //LET THE SLOTHS BEGIN.
+                    var timer = setInterval(function () {
+                        updateImage(sloths[x]);
+                        if (x == slothCount) {
+                            clearInterval(timer);
+                            updateSloths(last); // <- CHECK OUT MY RECURSIVE SHIT
+                        } else {
+                            var preload = new Image();
+                            preload.src = sloths[x + 1];
+                        }
+                        x++;
+                    }, delayTime);
+                },
+            timeout: 5000,
+            error: function(jqXHR, status, errorThrown){
+                console.log(status+": "+errorThrown);
             });
         }
 
