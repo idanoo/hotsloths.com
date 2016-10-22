@@ -131,9 +131,7 @@
                         x++;
                     }, delayTime);
                 },
-            timeout: 5000,
-            error: function(jqXHR, status, errorThrown){
-                console.log(status+": "+errorThrown);
+            timeout: 5000
             });
         }
 
