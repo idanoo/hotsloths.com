@@ -11,9 +11,13 @@
     <meta property="og:url" content="https://hotsloths.com"/>
     <meta property="fb:app_id" content="706742206156294"/>
 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
     <style>
         html, body, #sloths {
             overflow: hidden;
+            background-color: #333;
             width: 100%;
             max-height: 100%;
             height: 100%;
@@ -31,7 +35,7 @@
                 Also.. I don't really javascript often so excuse the crappy code.
                  ALSO I AM SORRY ABOUT THE ADS :( -->
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="https//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="position:absolute; bottom:0; right:0; z-index:9999; display:block; width:320px;height:50px; padding:0!important;margin:0 0 0px 0!important;"
      data-ad-client="ca-pub-1912142404509863"
@@ -71,7 +75,7 @@
 
         function updateImage(image) {
             //I wonder if this will slowly use everyone's ram and eventually crash the browser? Hmmm.
-            slothDom.html('<img src="' + image + '" style="width:100%; height:100%; position:absolute; top:0; left: 0;">');
+            slothDom.html('<img src="' + image + '" style="width:100%; height:100%; position:absolute; top:0; left: 0;">',slothDom.fadeIn(50));
             return true;
         }
 
