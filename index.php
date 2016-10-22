@@ -130,7 +130,7 @@
                         x++;
                     }, delayTime);
                 },
-            timeout: 5000
+            timeout: 2500
             });
         }
 
