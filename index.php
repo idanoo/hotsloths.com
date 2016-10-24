@@ -53,7 +53,6 @@
         $.ajax({
             url: "https://imgur.com",
             type: 'GET',
-            jsonpCallback: 'jsonCallback',
             timeout: 1000,
             cache: false,
             success: function(response) {
@@ -61,7 +60,7 @@
                 imgurIsBlocked = 0;
             },
             error: function(e) {
-                console.log("SERVER DOWN USE PROXY!");
+                console.log("SERVER DOWN USE PROXY! ");
                 imgurIsBlocked = 1;
             }
         });
