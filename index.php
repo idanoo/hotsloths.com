@@ -51,15 +51,14 @@
 
         //Check if can access imgur.
         $.ajax({
-            url: "http://imgur.com",
-            type: 'GET',
+            url: "https://imgur.com",
             timeout: 1000,
             cache: false,
-            success: function(response) {
+            success: function() {
                 console.log("SERVER UP USE IMGUR!");
                 imgurIsBlocked = 0;
             },
-            error: function(e) {
+            error: function() {
                 console.log("SERVER DOWN USE PROXY! ");
                 imgurIsBlocked = 1;
             }
