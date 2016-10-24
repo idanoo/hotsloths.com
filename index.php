@@ -49,6 +49,23 @@
         var slothDom = $('#sloths'); //HOME OF SLOTHS.
         var delayTime = 4000; //MASTER SLOTH TIMER.
 
+        //Check if can access imgur.
+        $.ajax({
+            url: "https://imgur.com",
+            type: 'GET',
+            jsonpCallback: 'jsonCallback',
+            timeout: 1000,
+            cache: false,
+            success: function(response) {
+                console.log("SERVER UP USE IMGUR!");
+                imgurIsBlocked = 0;
+            },
+            error: function(e) {
+                console.log("SERVER DOWN USE PROXY!");
+                imgurIsBlocked = 1;
+            }
+        });
+
         function checkExtention(url) {
             //Should I add gifs too? Or too slow to load?
             var parts = url.split('.');
@@ -75,7 +92,11 @@
 
         function updateImage(image) {
             //I wonder if this will slowly use everyone's ram and eventually crash the browser? Hmmm.
-            slothDom.html('<img src="' + image + '" style="width:100%; height:100%; position:absolute; top:0; left: 0;">',slothDom.fadeIn(50));
+            slothDom.fadeout(200,function() {
+                slothDom.html('<img src="' + image + '" style="width:100%; height:100%; position:absolute; top:0; left: 0;">', function() {
+                   slothDom.fadeIn(200);
+                })
+            });
             return true;
         }
 
