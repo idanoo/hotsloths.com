@@ -51,7 +51,7 @@
 
         //Check if can access imgur.
         $.ajax({
-            url: "https://imgur.com",
+            url: "http://imgur.com",
             type: 'GET',
             timeout: 1000,
             cache: false,
