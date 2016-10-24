@@ -94,7 +94,7 @@
             slothDom.fadeOut(200,function() {
                 slothDom.html('<img src="' + image + '" style="width:100%; height:100%; position:absolute; top:0; left: 0;">', function() {
                    slothDom.fadeIn(200);
-                })
+                });
             });
             return true;
         }
