@@ -90,11 +90,9 @@
         }
 
         function updateImage(image) {
-            //I wonder if this will slowly use everyone's ram and eventually crash the browser? Hmmm.
             slothDom.fadeOut(200,function() {
-                slothDom.html('<img src="' + image + '" style="width:100%; height:100%; position:absolute; top:0; left: 0;">', function() {
-                   slothDom.fadeIn(200);
-                });
+                slothDom.html('<img src="' + image + '" style="width:100%; height:100%; position:absolute; top:0; left: 0;">');
+                slothDom.fadeIn(200);
             });
             return true;
         }
